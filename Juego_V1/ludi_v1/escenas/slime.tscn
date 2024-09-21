@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnm7gkvbwsp7p"]
+
+[ext_resource type="Texture2D" uid="uid://khds4tm1nqq7" path="res://Rocky Roads/Rocky Roads/Enemies/slime_blue.png" id="1_p3h47"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qgag"]
+size = Vector2(103, 67)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="SlimeBlue" type="Sprite2D" parent="."]
+position = Vector2(450, 340)
+scale = Vector2(6.46875, 6.46875)
+texture = ExtResource("1_p3h47")
+hframes = 5
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(450.5, 359.5)
+shape = SubResource("RectangleShape2D_2qgag")
