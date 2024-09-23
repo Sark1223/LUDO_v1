@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=4 uid="uid://cmb2cow1jbciy"]
+[gd_scene load_steps=24 format=4 uid="uid://cmb2cow1jbciy"]
 
+[ext_resource type="Script" path="res://escenas/ludo.gd" id="1_4awqt"]
 [ext_resource type="Texture2D" uid="uid://bxixulrhfary" path="res://Rocky Roads/Rocky Roads/proto/Piedras.png" id="1_wsx56"]
 [ext_resource type="Texture2D" uid="uid://dry5bkebxmw16" path="res://Rocky Roads/Rocky Roads/Deco/water_a_8frames.png" id="2_1hly0"]
 [ext_resource type="Texture2D" uid="uid://b6aundwb8ssin" path="res://Rocky Roads/Rocky Roads/proto/base_personaje.png" id="3_0btv7"]
@@ -155,6 +156,9 @@ sources/4 = SubResource("TileSetAtlasSource_sadne")
 sources/5 = SubResource("TileSetAtlasSource_gmyte")
 
 [node name="Tablero" type="Sprite2D"]
+position = Vector2(583, 299)
+scale = Vector2(1.0417, 1.0417)
+script = ExtResource("1_4awqt")
 
 [node name="piezas" type="Node2D" parent="."]
 
