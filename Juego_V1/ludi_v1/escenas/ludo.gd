@@ -43,9 +43,9 @@ func display_board():
 			piezas.add_child(holder)
 			
 			if (y == 1):#Acomodar los personajes de arriba correctamente en la base
-				holder.global_position = Vector2(((x * cell_with)  + (cell_with / 5)) - 300, ((y * cell_with) + (cell_with/3)) - 300)
+				holder.global_position = Vector2(((x * cell_with)  + (cell_with / 5)) - 300, ((y * cell_with) + (cell_with/3)) - 305)
 			elif ( y == 11):#Acomodar los personajes de abajo correctamente en la base
-				holder.global_position = Vector2(((x * cell_with)  + (cell_with / 5)) - 300, ((y * cell_with) - (cell_with/3)) - 300)
+				holder.global_position = Vector2(((x * cell_with)  + (cell_with / 5)) - 300, ((y * cell_with) - (cell_with/3)) - 305)
 			else:
 				holder.global_position = Vector2(((x * cell_with)  + (cell_with / 5)) - 300, ((y * cell_with)) - 300)
 			
