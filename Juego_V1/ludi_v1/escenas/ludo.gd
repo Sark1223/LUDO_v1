@@ -4,9 +4,9 @@ const tablero_tamanio = 13;
 const cell_with = 50; #Tamaño de cada cuadro donde saltaran
 
 const TEXTURE_HOLDER = preload("res://escenas/texture_holder.tscn")
-
+const GATO_SALTO = preload("res://escenas/gato_salto.tscn")
 #Personajes
-const gato_salto  = preload("res://Rocky Roads/Rocky Roads/Personajes/gato_salto.png");
+#const gato_salto  = preload("res://Rocky Roads/Rocky Roads/Personajes/gato_salto.png");
 const STATIC_CAT = preload("res://Rocky Roads/Rocky Roads/Personajes/static_cat.png")
 const SOMBRERO = preload("res://Rocky Roads/Rocky Roads/Personajes/sombrero.png")
 const TORTUGA = preload("res://Rocky Roads/Rocky Roads/Personajes/tortuga.png")
@@ -51,6 +51,11 @@ func display_board():
 			
 			# Asignar textura según el valor en el tablero
 			match tablero[y][x]:
-				1:holder.texture = STATIC_CAT
-				2:holder.texture = SOMBRERO
-				3:holder.texture = TORTUGA
+				1:
+					var gato = GATO_SALTO.instantiate()  # Instancia la escena del personaje
+					piezas.add_child(gato)  # Añadir el personaje al tablero
+					gato.global_position = holder.global_position  # Asegurarse de que esté en la posición correcta
+				2:
+					holder.texture = SOMBRERO
+				3:
+					holder.texture = TORTUGA

@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://cmb2cow1jbciy"]
+[gd_scene load_steps=43 format=4 uid="uid://cmb2cow1jbciy"]
 
 [ext_resource type="Script" path="res://escenas/ludo.gd" id="1_4awqt"]
 [ext_resource type="Texture2D" uid="uid://dry5bkebxmw16" path="res://Rocky Roads/Rocky Roads/Deco/water_a_8frames.png" id="2_1hly0"]
@@ -6743,8 +6743,6 @@ tile_data = PackedInt32Array(0, 1048576, 19, 65536, 1310720, 19, 1, 3211264, 26,
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_0sil2"]
 tile_data = PackedInt32Array(0, 1048576, 18, 65536, 1048576, 19, 131072, 1310720, 19, 393216, 1048576, 19, 458752, 1310720, 19, 1, 1179648, 18, 65537, 3211264, 26, 131073, 1441792, 19, 393217, 3211264, 26, 458753, 1441792, 19, 2, 1245184, 18, 65538, 1245184, 19, 131074, 1507328, 19, 393218, 1245184, 19, 458754, 1507328, 19, 65542, 1048576, 19, 131078, 1310720, 19, 393222, 1048576, 19, 458758, 1310720, 19, 65543, 3211264, 26, 131079, 1441792, 19, 393223, 3211264, 26, 458759, 1441792, 19, 65544, 1245184, 19, 131080, 1507328, 19, 393224, 1245184, 19, 458760, 1507328, 19)
-
-[sub_resource type="TileMapPattern" id="TileMapPattern_03nua"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_hnrk5"]
 tile_data = PackedInt32Array(0, 196617, 4, 65536, 196617, 5, 131072, 196617, 6, 1, 262153, 4, 65537, 262153, 5, 131073, 262153, 6, 2, 458761, 4, 65538, 458761, 5, 131074, 458761, 6)
@@ -14197,10 +14195,9 @@ sources/9 = SubResource("TileSetAtlasSource_c8lde")
 sources/11 = SubResource("TileSetAtlasSource_guhsh")
 pattern_0 = SubResource("TileMapPattern_ygj0q")
 pattern_1 = SubResource("TileMapPattern_0sil2")
-pattern_2 = SubResource("TileMapPattern_03nua")
-pattern_3 = SubResource("TileMapPattern_hnrk5")
-pattern_4 = SubResource("TileMapPattern_3lovr")
-pattern_5 = SubResource("TileMapPattern_05iu4")
+pattern_2 = SubResource("TileMapPattern_hnrk5")
+pattern_3 = SubResource("TileMapPattern_3lovr")
+pattern_4 = SubResource("TileMapPattern_05iu4")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_03gvp"]
 texture = ExtResource("4_0dc1k")
