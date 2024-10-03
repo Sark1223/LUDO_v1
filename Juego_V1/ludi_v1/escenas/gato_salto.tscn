@@ -41,7 +41,7 @@ _data = {
 "gato_salto": SubResource("Animation_tjsni")
 }
 
-[node name="player1" type="CharacterBody2D"]
+[node name="gato" type="CharacterBody2D"]
 script = ExtResource("1_gwpj2")
 
 [node name="GatoSalto" type="Sprite2D" parent="."]

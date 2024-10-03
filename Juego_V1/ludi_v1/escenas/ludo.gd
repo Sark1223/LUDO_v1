@@ -10,7 +10,6 @@ const GATO_SALTO = preload("res://escenas/gato_salto.tscn")
 const SOMBRERO = preload("res://escenas/sombrero.tscn")
 
 #Personajes
-#const gato_salto  = preload("res://Rocky Roads/Rocky Roads/Personajes/gato_salto.png");
 const STATIC_CAT = preload("res://Rocky Roads/Rocky Roads/Personajes/static_cat.png")
 const TORTUGA = preload("res://Rocky Roads/Rocky Roads/Personajes/tortuga.png")
 
@@ -19,7 +18,13 @@ const TORTUGA = preload("res://Rocky Roads/Rocky Roads/Personajes/tortuga.png")
 @onready var turno = $turno
 
 var tablero : Array
+var turno_jugador: int
 
+var  PLAYER1 : Array
+var  PLAYER2 : Array
+var  PLAYER3 : Array
+var  PLAYER4 : Array
+ 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	tablero.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,])
@@ -31,14 +36,17 @@ func _ready() -> void:
 	tablero.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,])
 	tablero.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,])
 	tablero.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,])
-	tablero.append([0, 3, 0, 3, 0, 0, 0, 0, 0, 1, 0, 1, 0,])
+	tablero.append([0, 3, 0, 3, 0, 0, 0, 0, 0, 3, 0, 3, 0,])
 	tablero.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,])
-	tablero.append([0, 3, 0, 3, 0, 0, 0, 0, 0, 1, 0, 1, 0,])
+	tablero.append([0, 3, 0, 3, 0, 0, 0, 0, 0, 3, 0, 3, 0,])
 	tablero.append([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,])
-
 
 	display_board()
 	
+	turno_jugador = 1;
+
+
+#Generar tablero
 func display_board():
 	var noPiezaP1 = 0
 	var noPiezaP2 = 0
@@ -49,12 +57,14 @@ func display_board():
 			var holder = TEXTURE_HOLDER.instantiate()
 			piezas.add_child(holder)
 			
+			#ESTO SE VA A BORRAR CUANDO SE AGREGUEN LOS PERSONAJES COMO OBJETOS--------------------------
 			if (y == 1):#Acomodar los personajes de arriba correctamente en la base
 				holder.global_position = Vector2(((x * cell_with)  + (cell_with / 5)) - 300, ((y * cell_with) + (cell_with/3)) - 305)
 			elif ( y == 11):#Acomodar los personajes de abajo correctamente en la base
 				holder.global_position = Vector2(((x * cell_with)  + (cell_with / 5)) - 300, ((y * cell_with) - (cell_with/3)) - 305)
 			else:
 				holder.global_position = Vector2(((x * cell_with)  + (cell_with / 5)) - 300, ((y * cell_with)) - 300)
+			#----------------------------------------------------------------------------
 			
 			#CUADRANTE 1
 			#Posicion del personaje 1 en el cuadrante 1 Vector2(-262,-225)
@@ -65,17 +75,23 @@ func display_board():
 				1:
 					var gato = GATO_SALTO.instantiate()  # Instancia la escena del personaje
 					piezas.add_child(gato)  # Añadir el personaje al tablero
-					gato.global_position = inicioPersonajes(Vector2(-260,-220), noPiezaP1)  # Asegurarse de que esté en la posición correcta
+					gato.global_position = inicioPersonajes(Vector2(-260,-220), noPiezaP1, gato)  # Asegurarse de que esté en la posición correcta
+					
+					#ASIGNAR PERSONAJES AL PLAYER1
+					PLAYER1
 					noPiezaP1 = noPiezaP1 + 1
 				2:
 					var sombrero = SOMBRERO.instantiate()  # Instancia la escena del personaje
 					piezas.add_child(sombrero)  # Añadir el personaje al tablero
-					sombrero.global_position = inicioPersonajes(Vector2(143,-220), noPiezaP2)  # Asegurarse de que esté en la posición correcta
+					sombrero.global_position = inicioPersonajes(Vector2(143,-220), noPiezaP2, sombrero)  # Asegurarse de que esté en la posición correcta
 					noPiezaP2 = noPiezaP2 + 1
 				3:
 					holder.texture = TORTUGA
-					
-func inicioPersonajes (ubicacionInicial:Vector2, noPieza) -> Vector2:
+
+# Funcion que asigna posicion inicial a los personajes y un ID unico para cada uno
+func inicioPersonajes (ubicacionInicial:Vector2, noPieza, personaje) -> Vector2:
+	personaje.name = personaje.name + "_pieza_" + str(noPieza)
+	#print(personaje.name +"\n")
 	if(noPieza == 1):
 		return ubicacionInicial
 	elif (noPieza == 2):
@@ -84,3 +100,29 @@ func inicioPersonajes (ubicacionInicial:Vector2, noPieza) -> Vector2:
 		return Vector2(ubicacionInicial.x, ubicacionInicial.y + 82)
 	else:
 		return Vector2(ubicacionInicial.x + 100, ubicacionInicial.y + 82)
+
+@onready var btn_dado: Button = $disenio_tablero/cuadros/btnDado
+
+#Se mandara el nombre del personaje elegido por el player
+func moverPersonaje(valor:int, personaje):
+	if(valor == 6):
+		personaje.global_position = Vector2(-47,-257)
+	
+
+@onready var dado: RichTextLabel = $disenio_tablero/cuadros/dado
+func _on_pressed() -> void:
+	#Generar un numero aleatorio del 1 al 6
+	var random = RandomNumberGenerator.new()
+	random.randomize()
+	var valor = random.randi_range(1, 6)
+	dado.text = "obtuviste: " + str(valor)
+	#-----------------------------------
+	
+	#moverPersonaje(valor, )
+	
+
+func cambiar_turno_player(turno_jugador):
+	if(turno_jugador <4 ):
+		turno_jugador = turno_jugador + 1
+	else:
+		turno_jugador = 1;
