@@ -3,4 +3,4 @@ extends CharacterBody2D
 @onready var animation := $AnimationPlayer
 
 func _physics_process(delta):
-	animation.play("gato_salto")
+	animation.play("quieto")
