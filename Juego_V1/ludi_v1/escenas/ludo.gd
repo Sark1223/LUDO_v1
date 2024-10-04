@@ -13,6 +13,7 @@ const SOMBRERO = preload("res://escenas/sombrero.tscn")
 const STATIC_CAT = preload("res://Rocky Roads/Rocky Roads/Personajes/static_cat.png")
 const TORTUGA = preload("res://Rocky Roads/Rocky Roads/Personajes/tortuga.png")
 
+@onready var dado: RichTextLabel = $disenio_tablero/cuadros/dado
 @onready var piezas = $piezas
 @onready var posicion_mov = $posicion_mov
 @onready var turno = $turno
@@ -44,7 +45,6 @@ func _ready() -> void:
 	display_board()
 	
 	turno_jugador = 1;
-
 
 #Generar tablero
 func display_board():
@@ -78,12 +78,17 @@ func display_board():
 					gato.global_position = inicioPersonajes(Vector2(-260,-220), noPiezaP1, gato)  # Asegurarse de que esté en la posición correcta
 					
 					#ASIGNAR PERSONAJES AL PLAYER1
-					PLAYER1
+					PLAYER1.insert(noPiezaP1, gato)##De la posicion 0-4 se agrega el objeto personaje
+					
 					noPiezaP1 = noPiezaP1 + 1
 				2:
 					var sombrero = SOMBRERO.instantiate()  # Instancia la escena del personaje
 					piezas.add_child(sombrero)  # Añadir el personaje al tablero
 					sombrero.global_position = inicioPersonajes(Vector2(143,-220), noPiezaP2, sombrero)  # Asegurarse de que esté en la posición correcta
+					
+					#ASIGNAR PERSONAJES AL PLAYER2
+					PLAYER2.insert(noPiezaP2, sombrero)
+					
 					noPiezaP2 = noPiezaP2 + 1
 				3:
 					holder.texture = TORTUGA
@@ -103,26 +108,36 @@ func inicioPersonajes (ubicacionInicial:Vector2, noPieza, personaje) -> Vector2:
 
 @onready var btn_dado: Button = $disenio_tablero/cuadros/btnDado
 
+##Se ocupa saber si ya salio la pieza (un valor del arreglo bool) - LISTO!!!!
+# Nombre de la pieza .name - LISTO!!!!
+# objeto del personaje
+
 #Se mandara el nombre del personaje elegido por el player
 func moverPersonaje(valor:int, personaje):
 	if(valor == 6):
-		personaje.global_position = Vector2(-47,-257)
+		personaje.global_position = Vector2(-257,-45)
 	
-
-@onready var dado: RichTextLabel = $disenio_tablero/cuadros/dado
 func _on_pressed() -> void:
 	#Generar un numero aleatorio del 1 al 6
 	var random = RandomNumberGenerator.new()
 	random.randomize()
-	var valor = random.randi_range(1, 6)
-	dado.text = "obtuviste: " + str(valor)
+	var valor_dado = random.randi_range(1, 6)
+	dado.text = "obtuviste: " + str(valor_dado)
 	#-----------------------------------
-	
-	#moverPersonaje(valor, )
+	#print(PLAYER1[0].fuera_base)
+	#print(PLAYER1[1])
+	#print(PLAYER2[2])
+	obtener_Jugador_Personje(valor_dado)
+
+func obtener_Jugador_Personje(valor_dado):
+	if(turno_jugador == 1): 
+		moverPersonaje(valor_dado, PLAYER1[0])
+	elif(turno_jugador == 2):
+		moverPersonaje(valor_dado, PLAYER2[0])
 	
 
 func cambiar_turno_player(turno_jugador):
-	if(turno_jugador <4 ):
+	if(turno_jugador <3 ):
 		turno_jugador = turno_jugador + 1
 	else:
 		turno_jugador = 1;

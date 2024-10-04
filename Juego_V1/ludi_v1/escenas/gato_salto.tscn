@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dner7axn051h0"]
+[gd_scene load_steps=7 format=3 uid="uid://dner7axn051h0"]
 
 [ext_resource type="Texture2D" uid="uid://b3pvgbtq50pct" path="res://Rocky Roads/Rocky Roads/Personajes/gato_salto.png" id="1_3xk1a"]
 [ext_resource type="Script" path="res://escenas/gato_salto.gd" id="1_gwpj2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8kac6"]
+size = Vector2(26, 19)
 
 [sub_resource type="Animation" id="Animation_db5bn"]
 length = 0.001
@@ -42,7 +45,12 @@ _data = {
 }
 
 [node name="gato" type="CharacterBody2D"]
+position = Vector2(2, 31)
 script = ExtResource("1_gwpj2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(17, -13)
+shape = SubResource("RectangleShape2D_8kac6")
 
 [node name="GatoSalto" type="Sprite2D" parent="."]
 position = Vector2(16, -16)
@@ -54,3 +62,5 @@ frame = 2
 libraries = {
 "": SubResource("AnimationLibrary_mjk5c")
 }
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
