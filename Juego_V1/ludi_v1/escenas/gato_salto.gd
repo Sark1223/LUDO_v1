@@ -20,7 +20,3 @@ func _physics_process(delta):
 	#print("Nombre del personaje:", name)  # Muestra el nombre del personaje
 	## Aquí puedes mostrar más información si tienes más variables o datos
 	#print("Posición del personaje:", global_position)
-
-
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	print("hola")
