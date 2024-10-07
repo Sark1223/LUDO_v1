@@ -1,0 +1,48 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://8a7g16uoq651"]
+
+[ext_resource type="Texture2D" uid="uid://dfi1t2d3t7chn" path="res://static_cat.png" id="1_wxuf5"]
+[ext_resource type="Texture2D" uid="uid://bilpeavaggu65" path="res://gato_salto.png" id="2_hc8tc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvt7e"]
+atlas = ExtResource("2_hc8tc")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8u6a"]
+atlas = ExtResource("2_hc8tc")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_go7rh"]
+atlas = ExtResource("2_hc8tc")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xklan"]
+atlas = ExtResource("2_hc8tc")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wxuf5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvt7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8u6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_go7rh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xklan")
+}],
+"loop": true,
+"name": &"salto",
+"speed": 5.0
+}]
